@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
-        <title>상검망 프로젝트 데모</title>
+        <title>AI 상선검색망</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -10,12 +10,12 @@
 
             <aside id="left_sidebar">
                 <img src="images/rokn.png">
+                <button id="new_com">새로운 통신</button>
                 <br>
-                <h2>사이드바</h2>
-                <br>
-                <h5>새로운 통신 버튼</h5>
-                <br>
-                <h5>대화 내역 리스트 쭉</h5>
+                <h2>대화 내역 목록</h2>
+                <footer id="footer">
+                    <h2>제작자 정보, 문의 정보</h2>
+                </footer>
             </aside>
 
             <section id="chat_ui">
@@ -25,19 +25,18 @@
                 <br>
                 <h5>언어 설정</h5>
                 <br>
+                <h5>현재 시간</h5>
+                <br>
                 <h5>채팅 ui</h5>
                 <div id="chatbox">
-                    <textarea placeholder="Type your message..."></textarea>
+                    <textarea placeholder="메세지를 입력하십시오."></textarea>
+                    <button id="send_button">전송</button>
                 </div>
             </section>
 
             <aside id="right_sidebar">
                 <h2>자주 사용하는 스크립트</h2>
             </aside>
-
-            <footer id="footer">
-                <h2>제작자 정보, 문의 정보</h2>
-            </footer>
 
         </div>
     </body>
