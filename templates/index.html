@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>AI 상선검색망</title>
-        <link rel="stylesheet" href="style.css">
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     </head>
     <body>
         <div id="container">
 
             <aside id="left_sidebar">
-                <img src="images/rokn.png">
+                <img src="{{ url_for('static', filename='images/rokn.png') }}">
                 <button id="new_com">새로운 통신</button>
                 <br>
                 <h2>대화 내역 목록</h2>
@@ -33,7 +33,7 @@
                     <textarea id="messageInput" placeholder="메세지를 입력하십시오."></textarea>
                     <button id="send_button">전송</button>
                 </div>
-                <script src="script.js"></script>
+                <script src="{{ url_for('static', filename='script.js') }}"></script>
 
             </section>
 
