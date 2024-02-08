@@ -12,9 +12,10 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    font-size: medium;
     width: 15%;
     height: 100%;
-    background-color: #e7eef1ea;
+    background-color: #F0F2F6;
     float: left;
     position: relative;
 }
@@ -22,9 +23,29 @@
     padding: 10%;
 }
 #new_com {
-    width: 70%;
+    width: 60%;
+    height: 3%;
+    font-size: large;
     flex-wrap: nowrap;
-    align-content: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: #ffffff;
+    cursor: pointer;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #d7d9df;
+    }
+}
+#footer {
+    width: 100%;
+    height: 5%;
+    display: block;
+    background-color: #d7d9df;
+    font-size: x-small;
+    position: absolute;
+    bottom: 0;
 }
 #chat_ui {
     display: flex;
@@ -64,18 +85,16 @@
     border-radius: 5px;
     color: white;
     cursor: pointer;
+
+    &:hover {
+        background-color: white;
+        color: #a9a9a9;
+    }
 }
 #right_sidebar {
     width: 15%;
     height: 100%;
+    font-size: medium;
     float: right;
-    background-color: #e7eef162;
-}
-#footer {
-    width: 100%;
-    height: 5%;
-    background-color: #bac2c57a;
-    position: absolute;
-    bottom: 0;
-    /* clear: left;  플로팅 해제 */
+    background-color: #F0F2F6;
 }
