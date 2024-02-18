@@ -19,5 +19,12 @@ def handle_message(message):
     # 이걸로 프론트엔드로 통신 가능
     emit('message_from_backend', {'status': 'success'})
 
+@socketio.on('new_com')
+def handle_new_com():
+    print("새로운 통신 함수 실행")
+    # new_com 함수 동작
+
+    emit('message_from_backend', {'status': 'new_com_success'})
+
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=5500)

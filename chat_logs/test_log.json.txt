@@ -1,0 +1,18 @@
+{
+  "chat_title": "채팅 제목",
+  "messages": [
+    {
+      "timestamp": "날짜 및 시간",
+      "content": "메세지 내용",
+      "sender": "보낸 사람",
+      "attachment": "음성 파일 이름"
+    },
+    {
+      "timestamp": "날짜 및 시간",
+      "content": "메세지 내용",
+      "sender": "보낸 사람",
+      "attachment": "음성 파일 이름"
+    },
+    // 추가 메세지들
+  ]
+}

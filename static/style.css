@@ -73,11 +73,14 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 #chatbox textarea {
-    width: 90%;
+    width: 85%;
     height: 100%;
     resize: none;
 }
 #send_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     white-space: nowrap;
     background-color: #a9a9a9;
     padding: 10px;
@@ -85,6 +88,8 @@
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    width: 10%;
+    height: 100%;
 
     &:hover {
         background-color: white;
