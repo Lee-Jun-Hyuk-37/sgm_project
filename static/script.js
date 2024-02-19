@@ -1,7 +1,5 @@
-// import socket from "https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js";
 import { createChat } from "./ui.js";
 
-// const io = socket.io;
 document.addEventListener('DOMContentLoaded', function () {
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('send_button');

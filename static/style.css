@@ -76,13 +76,9 @@ body {
     padding-left: 2em;
     padding-right: 2em;
     background-color: #fff;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
     height: 100%;
     overflow-y: auto;
-    width: 50%;
+    width: 75%;
 }
 
 .message {
@@ -148,34 +144,25 @@ body {
 }
 
 .chatlog-container {
-    padding-top: 8em;
+    padding-top: 2em;
     padding-bottom: 8em;
     position: relative;
     top: 0;
     bottom: calc(3% + 16em);
 }
 
-.dummy-chat {
-    height: 8em;
-}
-
 .chat-container>div {
     word-break: keep-all;
-}
-
-#right-column {
-    background-color: #fff;
-    width: 25%;
 }
 
 #chatbox {
     position: fixed;
     display: flex;
-    justify-content: space-between;
-    width: 23.3%;
+    justify-content: space-around;
+    align-items: center;
+    width: 33.3%;
     bottom: 3%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 40%;
     background-color: #f0f0f0;
     padding: 15px;
     border-radius: 10px;

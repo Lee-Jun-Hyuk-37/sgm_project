@@ -15,7 +15,7 @@
             <img src="{{ url_for('static', filename='images/rokn.png') }}">
             <button id="new_com">새로운 통신</button>
             <br>
-            <h2>대화 내역 목록</h2>
+            <h2>통신 내역 목록</h2>
             <div id="filelist">
                 <div>wa sans</div>
                 <div>wa sans2</div>
@@ -27,17 +27,14 @@
 
         <section id="chat_ui">
             <div id="left-column">
-                <h1>AI 상선검색망</h1>
-                <br>
+                <!-- <h1>AI 상선검색망</h1>
+                <br> -->
                 <h2 id="chat_title">채팅 제목</h2>
                 <br>
                 <h5>언어 설정</h5>
-                <br>
-                <h5>현재 시간</h5>
             </div>
             <div id="center-column">
                 <div id="chatlog" class="chatlog-container">
-                    <!-- <div class="dummy-chat"></div> -->
                     <div class="chat-container chat-me">
                         <div class="chat-header">대한민국 해군 (2024-01-20 14:42:44)</div>
                         <div class="chat-content">
@@ -59,14 +56,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="dummy-chat"></div> -->
                 </div>
                 <div id="chatbox">
                     <textarea id="messageInput" placeholder="메세지를 입력하십시오."></textarea>
                     <button id="send_button">전송</button>
                 </div>
-            </div>
-            <div id="right-column">
             </div>
 
         </section>
