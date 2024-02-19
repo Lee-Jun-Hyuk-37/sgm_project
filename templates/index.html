@@ -1,46 +1,82 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <title>AI 상선검색망</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    </head>
-    <body>
-        <div id="container">
 
-            <aside id="left_sidebar">
-                <img src="{{ url_for('static', filename='images/rokn.png') }}">
-                <button id="new_com">새로운 통신</button>
-                <br>
-                <h2>대화 내역 목록</h2>
-                <footer id="footer">
-                    <h2>제작자 정보, 문의 정보</h2>
-                </footer>
-            </aside>
+<head>
+    <meta charset="UTF-8">
+    <title>AI 상선검색망</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
 
-            <section id="chat_ui">
+<body>
+    <div id="container">
+
+        <aside id="left_sidebar">
+            <img src="{{ url_for('static', filename='images/rokn.png') }}">
+            <button id="new_com">새로운 통신</button>
+            <br>
+            <h2>대화 내역 목록</h2>
+            <div id="filelist">
+                <div>wa sans</div>
+                <div>wa sans2</div>
+            </div>
+            <footer id="footer">
+                <h2>제작자 정보, 문의 정보</h2>
+            </footer>
+        </aside>
+
+        <section id="chat_ui">
+            <div id="left-column">
                 <h1>AI 상선검색망</h1>
                 <br>
-                <h2>채팅 제목</h2>
+                <h2 id="chat_title">채팅 제목</h2>
                 <br>
                 <h5>언어 설정</h5>
                 <br>
                 <h5>현재 시간</h5>
-                <br>
-                <h5>채팅 ui</h5>
+            </div>
+            <div id="center-column">
+                <div id="chatlog" class="chatlog-container">
+                    <!-- <div class="dummy-chat"></div> -->
+                    <div class="chat-container chat-me">
+                        <div class="chat-header">대한민국 해군 (2024-01-20 14:42:44)</div>
+                        <div class="chat-content">
+                            <div>여기는 대한민국 해군입니다. 우리의 검색에 협조바랍니다.</div>
+                            <div>This is Korean Navy. Corperate with our investigation</div>
+                            <div>
+                                <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-container chat-other">
+                        <div class="chat-header">미확인 상선 (2024-01-20 14:52:44)</div>
+                        <div class="chat-content">
+                            <div>No I dont want to go away.</div>
+                            <div>싫다. 저리가라 </div>
+                            <div>
+                                <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="dummy-chat"></div> -->
+                </div>
                 <div id="chatbox">
                     <textarea id="messageInput" placeholder="메세지를 입력하십시오."></textarea>
                     <button id="send_button">전송</button>
                 </div>
-                <script src="{{ url_for('static', filename='script.js') }}"></script>
+            </div>
+            <div id="right-column">
+            </div>
 
-            </section>
+        </section>
 
-            <aside id="right_sidebar">
-                <h2>자주 사용하는 스크립트</h2>
-            </aside>
+        <aside id="right_sidebar">
+            <h2>자주 사용하는 스크립트</h2>
+        </aside>
+        <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
 
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
