@@ -23,6 +23,11 @@ body {
     position: relative;
 }
 
+#left_sidebar h2 {
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+}
+
 #left_sidebar img {
     padding: 10%;
 }
@@ -41,6 +46,19 @@ body {
 
     &:hover {
         background-color: #d7d9df;
+    }
+}
+
+#filelist {
+    padding-left: 1em;
+    overflow-y: auto;
+}
+
+#filelist div {
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    &:hover {
+        color: #a9a9a9;
     }
 }
 
@@ -81,34 +99,15 @@ body {
     width: 75%;
 }
 
-.message {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.message-box {
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    max-width: 80%;
-}
-
-.other {
-    background-color: #f2f2f2;
-    float: left;
-}
-
-.rokn {
-    background-color: #4CAF50;
-    color: white;
-    float: right;
-}
-
 .chatlog-container {
     display: flex;
     gap: 1em;
     flex-direction: column;
+}
+
+.chat-header {
+    margin-bottom: 0.5em;
+    color: navy;
 }
 
 .chat-content {
@@ -121,11 +120,6 @@ body {
 
 .chat-me .chat-content {
     border-right-width: 8px;
-}
-
-.chat-header {
-    margin-bottom: 0.5em;
-    color: navy;
 }
 
 .chat-me.chat-container {
