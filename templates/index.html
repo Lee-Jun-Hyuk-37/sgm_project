@@ -16,25 +16,24 @@
             <button id="new_com">새로운 통신</button>
             <h2>통신 내역 목록</h2>
             <div id="filelist">
-                <!-- <div>wa sans</div>
-                <div>wa sans2</div> -->
+                
             </div>
-            <footer id="footer">
-                <h2>제작자 정보, 문의 정보</h2>
-            </footer>
         </aside>
 
         <section id="chat_ui">
             <div id="left-column">
                 <!-- <h1>AI 상선검색망</h1>
                 <br> -->
-                <h2 id="chat_title">채팅 제목</h2>
+
+                <h1 id="chat_title">채팅 제목</h1>
+                <br>
+                <h5>수신 음성 wave 실시간 시각화</h5>
                 <br>
                 <h5>언어 설정</h5>
             </div>
             <div id="center-column">
                 <div id="chatlog" class="chatlog-container">
-                    <div class="chat-container chat-me">
+                    <!-- <div class="chat-container chat-me">
                         <div class="chat-header">대한민국 해군 (2024-01-20 14:42:44)</div>
                         <div class="chat-content">
                             <div>여기는 대한민국 해군입니다. 우리의 검색에 협조바랍니다.</div>
@@ -54,7 +53,7 @@
                                 <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="chatbox">
                     <textarea id="messageInput" placeholder="메세지를 입력하십시오."></textarea>
@@ -66,6 +65,9 @@
 
         <aside id="right_sidebar">
             <h2>자주 사용하는 스크립트</h2>
+            <footer id="footer">
+                <h2>제작자 정보, 문의 정보</h2>
+            </footer>
         </aside>
         <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
 

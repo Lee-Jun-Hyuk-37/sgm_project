@@ -23,15 +23,33 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(file_name, "Clicked!")
     }
 
+    function editChatTitle() {
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                chatTitleEL.blur();
+            }
+        }
+        function handleBlur() {
+            socket.emit("update_chat_title", { "file_name": currentFile, "chat_title": chatTitleEL.innerText });
+            chatTitleEL.removeEventListener('keydown', handleKeyDown);
+            chatTitleEL.removeEventListener('blur', handleBlur);
+        }
+        chatTitleEL.addEventListener('keydown', handleKeyDown);
+        chatTitleEL.addEventListener('blur', handleBlur);
+        chatTitleEL.contentEditable = true;
+        chatTitleEL.focus();
+    }
+
     function drawChat() {
         const chatlog_raw = localStorage.getItem(currentFile)
         if (chatlog_raw == null) return;
         else {
             const chat_log = JSON.parse(chatlog_raw);
-            chatTitleEL.innerText = chat_log["chat_title"]
-            chatlogEL.innerHTML = ""
+            chatTitleEL.innerText = chat_log["chat_title"];
+            chatlogEL.innerHTML = "";
             chat_log["messages"].forEach((v, i) => {
-                const newChat = createChat(v)
+                const newChat = createChat(v);
                 chatlogEL.appendChild(newChat);
             })
         }
@@ -41,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const message = messageInput.value;
         if (message.trim() !== '') {
             const timenow = (new Date()).toISOString();
-            const newChat = createChat({ sender: "R.O.K.N.", timestamp: timenow, content: message, translated: "Loading" })
+            const newChat = createChat({ sender: "R.O.K.N.", timestamp: timenow, content: message, translated: "Loading" });
             chatlogEL.appendChild(newChat);
             socket.emit('message_from_frontend', { "file_name": currentFile, "message": message });
             messageInput.value = '';
@@ -74,17 +92,18 @@ document.addEventListener('DOMContentLoaded', function () {
         file_list.forEach((v, i) => {
             const file_div = document.createElement('div');
             file_div.innerText = v["chat_title"];
-            file_div.addEventListener('click', () => loadChat(v["file_name"]))
+            file_div.addEventListener('click', () => loadChat(v["file_name"]));
             filelistEL.appendChild(file_div);
         })
     })
 
     socket.on('update_chatlog', function (data) {
-        localStorage.setItem(data["file_name"], data["content"])
+        localStorage.setItem(data["file_name"], data["content"]);
         if (currentFile == data["file_name"]) drawChat();
     })
 
     sendButton.addEventListener('click', sendMessage);
     messageInput.addEventListener('keydown', handleKeyPress);
     newComEL.addEventListener('click', start_new_com);
+    chatTitleEL.addEventListener('click',editChatTitle);
 });

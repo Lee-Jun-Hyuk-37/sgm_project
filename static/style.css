@@ -16,6 +16,7 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     font-size: medium;
+    align-items: center;
     width: 15%;
     height: 100%;
     background-color: #F0F2F6;
@@ -24,17 +25,19 @@ body {
 }
 
 #left_sidebar h2 {
-    padding-left: 1em;
     margin-bottom: 0.5em;
+    flex-wrap: nowrap;
+    text-align: center;
 }
 
 #left_sidebar img {
     padding: 10%;
+    width: 90%;
 }
 
 #new_com {
     width: 60%;
-    height: 3%;
+    height: 3em;
     font-size: 1em;
     flex-wrap: nowrap;
     display: block;
@@ -50,8 +53,8 @@ body {
 }
 
 #filelist {
-    padding-left: 1em;
     overflow-y: auto;
+    text-align: center;
 }
 
 #filelist div {
@@ -62,16 +65,6 @@ body {
     }
 }
 
-#footer {
-    width: 100%;
-    height: 5%;
-    display: block;
-    background-color: #d7d9df;
-    font-size: x-small;
-    position: absolute;
-    bottom: 0;
-}
-
 #chat_ui {
     display: flex;
     width: 70%;
@@ -80,21 +73,20 @@ body {
     float: left;
 }
 
-#chat_ui h1 {
-    font-size: 2vw;
-    margin-left: 3%;
-}
-
 #left-column {
     background-color: #fff;
     width: 25%;
 }
 
+#chat_title {
+    white-space: break-spaces;
+    font-size: 2em;
+    margin-left: 0.5em;
+}
+
 #center-column {
-    padding-left: 2em;
-    padding-right: 2em;
+    padding: 2em;
     background-color: #fff;
-    height: 100%;
     overflow-y: auto;
     width: 75%;
 }
@@ -103,6 +95,10 @@ body {
     display: flex;
     gap: 1em;
     flex-direction: column;
+    padding: 2em 0 8em;
+    position: relative;
+    top: 0;
+    bottom: calc(3% + 16em);
 }
 
 .chat-header {
@@ -118,35 +114,26 @@ body {
     flex-direction: column;
 }
 
-.chat-me .chat-content {
-    border-right-width: 8px;
-}
-
 .chat-me.chat-container {
     display: flex;
     flex-direction: column;
     align-items: end;
-    margin-left: 4em;
+}
+
+.chat-me .chat-content {
+    border-right-width: 8px;
+    align-items: flex-end;
+}
+
+.chat-other.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
 .chat-other .chat-content {
     border-left-width: 8px;
-}
-
-.chat-other {
-    margin-right: 4em;
-}
-
-.chatlog-container {
-    padding-top: 2em;
-    padding-bottom: 8em;
-    position: relative;
-    top: 0;
-    bottom: calc(3% + 16em);
-}
-
-.chat-container>div {
-    word-break: keep-all;
+    align-items: flex-start;
 }
 
 #chatbox {
@@ -191,8 +178,22 @@ body {
 
 #right_sidebar {
     width: 15%;
-    height: 100%;
+    height: 95%;
+    display: flex;
+    text-align: center;
+    align-content: flex-start;
+    justify-content: center;
     font-size: medium;
     float: right;
     background-color: #F0F2F6;
+}
+
+#footer {
+    width: 15%;
+    height: 5%;
+    display: block;
+    background-color: #d7d9df;
+    font-size: x-small;
+    position: absolute;
+    bottom: 0;
 }
