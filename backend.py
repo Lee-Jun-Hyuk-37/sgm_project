@@ -75,6 +75,13 @@ def handle_new_com():
     socket_send_current_file_list()
 
 
+@socketio.on('language_select')
+def language_select(lang):    
+    print("선택된 언어")
+    print(lang)
+    print()
+
+
 @socketio.on('connect')
 def handle_connection():
     socket_send_current_file_list()

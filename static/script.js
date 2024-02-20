@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatlogEL = document.getElementById('chatlog');
     const filelistEL = document.getElementById('filelist');
     const chatTitleEL = document.getElementById('chat_title');
+    const languageSelect = document.getElementById('languageSelect');
 
     let currentFile = undefined;
 
@@ -77,6 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
         socket.emit('new_com');
     }
 
+    function select_language() {
+        let selectedLanguage = languageSelect.value;
+        socket.emit('language_select', selectedLanguage)
+    }
+
     //여기로 백엔드로부터 데이터 받기 가능
     socket.on('message_from_backend', function (data) {
         console.log('받은 메시지:', data);
@@ -105,5 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
     sendButton.addEventListener('click', sendMessage);
     messageInput.addEventListener('keydown', handleKeyPress);
     newComEL.addEventListener('click', start_new_com);
-    chatTitleEL.addEventListener('click',editChatTitle);
+    chatTitleEL.addEventListener('click', editChatTitle);
+    languageSelect.addEventListener('change', select_language);
 });
