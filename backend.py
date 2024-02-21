@@ -76,10 +76,12 @@ def handle_new_com():
 
 
 @socketio.on('language_select')
-def language_select(lang):    
-    print("선택된 언어")
-    print(lang)
-    print()
+def language_select(data):
+    fn = data["file_name"]
+    lang = data["language"]
+    obj=json.loads((chat_root/f"{fn}.json").read_text('u8'))
+    obj["language"] = lang
+    (chat_root/f"{fn}.json").write_text(json.dumps(obj, indent=2, ensure_ascii=False), 'utf-8')
 
 
 @socketio.on('connect')

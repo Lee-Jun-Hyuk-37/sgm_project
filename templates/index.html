@@ -16,7 +16,6 @@
             <button id="new_com">새로운 통신</button>
             <h2>통신 내역 목록</h2>
             <div id="filelist">
-                
             </div>
         </aside>
 
@@ -26,8 +25,9 @@
                 <br> -->
 
                 <h1 id="chat_title">채팅 제목</h1>
-                <h5 id="languageLabel">언어 설정</h5>
+                <h5 id="languageLabel">통신 상대 언어 설정</h5>
                 <select id="languageSelect">
+                    <option value="" disabled selected hidden>언어를 선택해주세요</option>
                     <option value="korean">한국어</option>
                     <option value="english">영어</option>
                     <option value="japanese">일본어</option>
@@ -72,7 +72,7 @@
         </section>
 
         <aside id="right_sidebar">
-            <h2>자주 사용하는 스크립트</h2>
+            <h2 id="freq_used_script">자주 사용하는 스크립트</h2>
             <footer id="footer">
                 <h2>제작자 정보, 문의 정보</h2>
             </footer>

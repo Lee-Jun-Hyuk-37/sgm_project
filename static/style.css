@@ -199,7 +199,7 @@ body {
     }
 }
 
-#right_sidebar {
+/* #right_sidebar {
     width: 15%;
     height: 95%;
     display: flex;
@@ -209,9 +209,28 @@ body {
     font-size: medium;
     float: right;
     background-color: #F0F2F6;
+} */
+
+#right_sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    font-size: medium;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    background-color: #F0F2F6;
+    float: right;
+    position: relative;
 }
 
-#footer {
+#right_sidebar h2 {
+    margin-bottom: 0.5em;
+    flex-wrap: nowrap;
+    text-align: center;
+}
+
+/* #footer {
     width: 15%;
     height: 5%;
     display: block;
@@ -219,4 +238,4 @@ body {
     font-size: x-small;
     position: absolute;
     bottom: 0;
-}
+} */

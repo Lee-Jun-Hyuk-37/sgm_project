@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatlogEL = document.getElementById('chatlog');
     const filelistEL = document.getElementById('filelist');
     const chatTitleEL = document.getElementById('chat_title');
+    // const freqscriptEL = document.getElementById('freq_used_script');
     const languageSelect = document.getElementById('languageSelect');
 
     let currentFile = undefined;
@@ -22,6 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
         drawChat();
         socket.emit('req_update_chatlog', { file_name });
         console.log(file_name, "Clicked!")
+
+        const chatlog_raw = localStorage.getItem(currentFile);
+        if (chatlog_raw != null) {
+            const chat_log = JSON.parse(chatlog_raw);
+            const selectedLanguage = chat_log["language"];
+
+            if (selectedLanguage) {
+                languageSelect.value = selectedLanguage;
+                loadFreqUsedScripts(selectedLanguage);
+            }
+        }
     }
 
     function editChatTitle() {
@@ -67,6 +79,37 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function loadFreqUsedScripts(selectedLanguage) {
+        const rightSidebarEL = document.getElementById('right_sidebar');
+        rightSidebarEL.innerHTML = "";
+    
+        const freqScriptPath = 'static/freq_script.json';
+    
+        fetch(freqScriptPath)
+            .then(response => response.json())
+            .then(freqScript => {
+                const scripts = freqScript[selectedLanguage];
+    
+                const freqUsedScriptTitleEL = document.createElement('h2');
+                freqUsedScriptTitleEL.id = 'freq_used_script';
+                freqUsedScriptTitleEL.innerText = '자주 사용하는 스크립트';
+                rightSidebarEL.appendChild(freqUsedScriptTitleEL);
+    
+                scripts.forEach((script, index) => {
+                    const scriptDiv = document.createElement('div');
+                    scriptDiv.innerText = script.content;
+                    rightSidebarEL.appendChild(scriptDiv);
+                });
+    
+                const footerEL = document.createElement('footer');
+                footerEL.id = 'footer';
+                const creatorInfoEL = document.createElement('h2');
+                creatorInfoEL.innerText = '제작자 정보, 문의 정보';
+                footerEL.appendChild(creatorInfoEL);
+                rightSidebarEL.appendChild(footerEL);
+            });
+    }
+
     function handleKeyPress(event) {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
@@ -80,13 +123,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function select_language() {
         let selectedLanguage = languageSelect.value;
-        socket.emit('language_select', selectedLanguage)
+        socket.emit('language_select', { "file_name": currentFile, "language": selectedLanguage });
+        loadChat(currentFile); // 얘 뭔가 두 번 눌러야 하는 오류 해결하기
     }
 
-    //여기로 백엔드로부터 데이터 받기 가능
     socket.on('message_from_backend', function (data) {
         console.log('받은 메시지:', data);
-        // 이벤트에 대한 처리를 여기에 추가할 수 있습니다.
     });
 
     socket.on('file_list_update', function (data) {
