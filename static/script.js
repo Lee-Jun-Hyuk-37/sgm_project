@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatlogEL = document.getElementById('chatlog');
     const filelistEL = document.getElementById('filelist');
     const chatTitleEL = document.getElementById('chat_title');
-    // const freqscriptEL = document.getElementById('freq_used_script');
     const languageSelect = document.getElementById('languageSelect');
 
     let currentFile = undefined;
@@ -94,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 freqUsedScriptTitleEL.id = 'freq_used_script';
                 freqUsedScriptTitleEL.innerText = '자주 사용하는 스크립트';
                 rightSidebarEL.appendChild(freqUsedScriptTitleEL);
-    
+
                 scripts.forEach((script, index) => {
                     const scriptDiv = document.createElement('div');
                     scriptDiv.innerText = script.content;
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function select_language() {
         let selectedLanguage = languageSelect.value;
         socket.emit('language_select', { "file_name": currentFile, "language": selectedLanguage });
-        loadChat(currentFile); // 얘 뭔가 두 번 눌러야 하는 오류 해결하기
+        loadFreqUsedScripts(selectedLanguage);
     }
 
     socket.on('message_from_backend', function (data) {
