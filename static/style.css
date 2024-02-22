@@ -199,18 +199,6 @@ body {
     }
 }
 
-/* #right_sidebar {
-    width: 15%;
-    height: 95%;
-    display: flex;
-    text-align: center;
-    align-content: flex-start;
-    justify-content: center;
-    font-size: medium;
-    float: right;
-    background-color: #F0F2F6;
-} */
-
 #right_sidebar {
     display: flex;
     flex-direction: column;
@@ -229,13 +217,3 @@ body {
     flex-wrap: nowrap;
     text-align: center;
 }
-
-/* #footer {
-    width: 15%;
-    height: 5%;
-    display: block;
-    background-color: #d7d9df;
-    font-size: x-small;
-    position: absolute;
-    bottom: 0;
-} */

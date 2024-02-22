@@ -99,13 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     scriptDiv.innerText = script.content;
                     rightSidebarEL.appendChild(scriptDiv);
                 });
-    
-                const footerEL = document.createElement('footer');
-                footerEL.id = 'footer';
-                const creatorInfoEL = document.createElement('h2');
-                creatorInfoEL.innerText = '제작자 정보, 문의 정보';
-                footerEL.appendChild(creatorInfoEL);
-                rightSidebarEL.appendChild(footerEL);
             });
     }
 
