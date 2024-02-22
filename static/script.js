@@ -21,17 +21,15 @@ document.addEventListener('DOMContentLoaded', function () {
         currentFile = file_name;
         drawChat();
         socket.emit('req_update_chatlog', { file_name });
-        console.log(file_name, "Clicked!")
+        console.log(file_name, "Clicked!");
 
         const chatlog_raw = localStorage.getItem(currentFile);
         if (chatlog_raw != null) {
             const chat_log = JSON.parse(chatlog_raw);
             const selectedLanguage = chat_log["language"];
 
-            if (selectedLanguage) {
-                languageSelect.value = selectedLanguage;
-                loadFreqUsedScripts(selectedLanguage);
-            }
+            languageSelect.value = selectedLanguage;
+            loadFreqUsedScripts(selectedLanguage);
         }
     }
 
@@ -54,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function drawChat() {
-        const chatlog_raw = localStorage.getItem(currentFile)
+        const chatlog_raw = localStorage.getItem(currentFile);
         if (chatlog_raw == null) return;
         else {
             const chat_log = JSON.parse(chatlog_raw);
@@ -81,25 +79,27 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadFreqUsedScripts(selectedLanguage) {
         const rightSidebarEL = document.getElementById('right_sidebar');
         rightSidebarEL.innerHTML = "";
-    
-        const freqScriptPath = 'static/freq_script.json';
-    
-        fetch(freqScriptPath)
-            .then(response => response.json())
-            .then(freqScript => {
-                const scripts = freqScript[selectedLanguage];
-    
-                const freqUsedScriptTitleEL = document.createElement('h2');
-                freqUsedScriptTitleEL.id = 'freq_used_script';
-                freqUsedScriptTitleEL.innerText = '자주 사용하는 스크립트';
-                rightSidebarEL.appendChild(freqUsedScriptTitleEL);
 
-                scripts.forEach((script, index) => {
-                    const scriptDiv = document.createElement('div');
-                    scriptDiv.innerText = script.content;
-                    rightSidebarEL.appendChild(scriptDiv);
+        const freqUsedScriptTitleEL = document.createElement('h2');
+        freqUsedScriptTitleEL.id = 'freq_used_script';
+        freqUsedScriptTitleEL.innerText = '자주 사용하는 스크립트';
+        rightSidebarEL.appendChild(freqUsedScriptTitleEL);
+
+        if (selectedLanguage != "") {
+            const freqScriptPath = 'static/freq_script.json';
+
+            fetch(freqScriptPath)
+                .then(response => response.json())
+                .then(freqScript => {
+                    const scripts = freqScript[selectedLanguage];
+
+                    scripts.forEach((script, index) => {
+                        const scriptDiv = document.createElement('div');
+                        scriptDiv.innerText = script.content;
+                        rightSidebarEL.appendChild(scriptDiv);
+                    });
                 });
-            });
+        }
     }
 
     function handleKeyPress(event) {
@@ -129,18 +129,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
         filelistEL.innerHTML = "";
 
-        file_list.forEach((v, i) => {
+        file_list.forEach((file, i) => {
             const file_div = document.createElement('div');
-            file_div.innerText = v["chat_title"];
-            file_div.addEventListener('click', () => loadChat(v["file_name"]));
+            file_div.innerText = file["chat_title"];
+            file_div.addEventListener('click', () => loadChat(file["file_name"]));
             filelistEL.appendChild(file_div);
         })
+    })
+
+    socket.on('load_new_com', function (fn) {
+        loadChat(fn);
     })
 
     socket.on('update_chatlog', function (data) {
         localStorage.setItem(data["file_name"], data["content"]);
         if (currentFile == data["file_name"]) drawChat();
     })
+
+    socket.on('chat_title_bug', function () {
+        chatTitleEL.click();
+        chatTitleEL.blur();
+    });
 
     sendButton.addEventListener('click', sendMessage);
     messageInput.addEventListener('keydown', handleKeyPress);

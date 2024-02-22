@@ -30,7 +30,8 @@ def handle_message(data):
 
     # 여기서 메시지를 처리하거나 다른 동작을 수행가능
     # 이걸로 프론트엔드로 통신 가능
-    timenow = dt.datetime.now().astimezone().isoformat(timespec="seconds")
+
+    timenow = dt.datetime.now().isoformat(timespec="seconds").replace("-", "/").replace("T", "-")
 
     sleep(1)
     output=base64.b64encode(message.encode('u8')).decode('u8')
@@ -68,11 +69,15 @@ def handle_update_chatlog(data):
 
 @socketio.on('new_com')
 def handle_new_com():
-    fn = dt.datetime.now().isoformat(timespec="seconds")+"_"+secrets.token_urlsafe(8)
-    fn = fn.replace(":","-")
-    (chat_root/f"{fn}.json").write_text(f'{{"chat_title": "Untitled {secrets.token_urlsafe(4)}","messages":[]}}')
-    emit('message_from_backend', {'status': 'new_com_success'})
+    time = dt.datetime.now().isoformat(timespec="seconds").replace("-", "_").replace(":","_")
+    fn = time + "_" + secrets.token_urlsafe(8)
+    (chat_root/f"{fn}.json").write_text(f'{{"chat_title": "{time}", "language": "", "messages":[]}}')
+
+    def callback():
+        socketio.emit('load_new_com', fn, namespace='/')
+    
     socket_send_current_file_list()
+    socketio.start_background_task(callback)
 
 
 @socketio.on('language_select')
@@ -87,6 +92,7 @@ def language_select(data):
 @socketio.on('connect')
 def handle_connection():
     socket_send_current_file_list()
+    emit('chat_title_bug')
 
 
 def socket_send_current_file_list():
@@ -95,6 +101,7 @@ def socket_send_current_file_list():
             "chat_title":json.loads(x.read_bytes())["chat_title"]
         },
         chat_root.glob("*.json")))
+    res = sorted(res, key=lambda x: x['file_name'], reverse=True)
     emit('file_list_update', {'file_list':res})
 
 
