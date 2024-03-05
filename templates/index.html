@@ -6,6 +6,7 @@
     <title>AI 상선검색망</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/master/dist/recorder.js"></script>
 </head>
 
 <body>
@@ -24,48 +25,54 @@
                 <!-- <h1>AI 상선검색망</h1>
                 <br> -->
 
-                <h1 id="chat_title">채팅 제목</h1>
+                <h1 id="chat_title"></h1>
                 <h5 id="languageLabel">통신 상대 언어 설정</h5>
                 <select id="languageSelect">
-                    <option value="" disabled selected hidden>언어를 선택해주세요</option>
+                    <option value="" disabled selected hidden>언어를 선택하십시오.</option>
                     <option value="korean">한국어</option>
                     <option value="english">영어</option>
-                    <option value="japanese">일본어</option>
                     <option value="chinese">중국어</option>
+                    <option value="japanese">일본어</option>
                     <option value="russian">러시아어</option>
-                    <option value="etc">기타</option>
+                    <option value="etc">기타 언어</option>
                 </select>
                 <br>
-                <h5>수신 음성 wave 실시간 시각화</h5>
+                <div id="mic_input_control">
+                    <h5 id="micTitle">마이크 음성 수신</h5>
+                    <canvas id="waveformCanvas"></canvas>
+                    <button id="recordButton">녹음 시작</button>
+                </div>
                 
             </div>
             <div id="center-column">
-                <div id="chatlog" class="chatlog-container">
-                    <!-- <div class="chat-container chat-me">
-                        <div class="chat-header">대한민국 해군 (2024-01-20 14:42:44)</div>
-                        <div class="chat-content">
-                            <div>여기는 대한민국 해군입니다. 우리의 검색에 협조바랍니다.</div>
-                            <div>This is Korean Navy. Corperate with our investigation</div>
-                            <div>
-                                <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
+                <div id="chatlog-scroll" class="chatlog-scroll">
+                    <div id="chatlog" class="chatlog-container">
+                        <!-- <div class="chat-container chat-me">
+                            <div class="chat-header">대한민국 해군 (2024-01-20 14:42:44)</div>
+                            <div class="chat-content">
+                                <div>여기는 대한민국 해군입니다. 우리의 검색에 협조바랍니다.</div>
+                                <div>This is Korean Navy. Corperate with our investigation</div>
+                                <div>
+                                    <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="chat-container chat-other">
-                        <div class="chat-header">미확인 상선 (2024-01-20 14:52:44)</div>
-                        <div class="chat-content">
-                            <div>No I dont want to go away.</div>
-                            <div>싫다. 저리가라 </div>
-                            <div>
-                                <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
+                        <div class="chat-container chat-other">
+                            <div class="chat-header">미확인 상선 (2024-01-20 14:52:44)</div>
+                            <div class="chat-content">
+                                <div>No I dont want to go away.</div>
+                                <div>싫다. 저리가라 </div>
+                                <div>
+                                    <audio controls src="{{ url_for('static', filename='test.wav') }}"></audio>
+                                </div>
                             </div>
-                        </div>
-                    </div> -->
+                        </div> -->
+                    </div>
                 </div>
-                <div id="chatbox">
+                <div id="chatbox" >
                     <textarea id="messageInput" placeholder="메세지를 입력하십시오."></textarea>
-                    <button id="send_button">전송</button>
+                    <button id="send_button">전 송</button>
                 </div>
             </div>
 
